@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal - Parent</title>
+</head>
+<body>
+<div align="center">
+    <div>
+        <p>Lista uczniów</p>
+        <table>
+            <tr>
+                <td>
+                <input type="text" name="id" id="id" th:value="${id}" hidden="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label> Imię </label>
+                </td>
+                <td>
+                    <input type="text" name="first_name" id="first_name" th:value="${first_name}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label> Nazwisko </label>
+                </td>
+                <td>
+                    <input type="text" name="last_name" id="last_name" th:value="${last_name}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Klasa</label>
+                </td>
+                <td>
+                    <input type="text" name="clazz" id="clazz" th:value="${clazz}" disabled="true" />
+                </td>
+            </tr>
+            <tr>
+                <td><img src="${photo}" alt="photo"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

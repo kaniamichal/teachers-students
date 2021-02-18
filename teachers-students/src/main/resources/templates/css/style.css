@@ -1,0 +1,16 @@
+@import url("templates/css/reset.css");
+
+body {
+    background-color: red;
+    color: dimgrey;
+    font-family: 'Arial', 'Tahoma', sans-serif;
+    font-weight: normal;
+    font-size: inherit;
+    display: grid;
+}
+
+.section1 {
+
+
+}
+
