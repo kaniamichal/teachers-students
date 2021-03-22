@@ -1,47 +1,36 @@
 package com.example.teachersstudents.service;
 
-import com.example.teachersstudents.exception.AccountNotFoundException;
+import com.example.teachersstudents.model.User;
 import com.example.teachersstudents.model.Student;
-import com.example.teachersstudents.exception.StudentNotFoundException;
 import com.example.teachersstudents.repository.StudentRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class StudentService {
 
     private final StudentRepository repository;
 
-    public Student getStudent(Student id) {
-        return repository.findById(id).orElseThrow(StudentNotFoundException::new);
+    public List<Student> getStudentsByClazz(String clazz) {
+        return repository.getAllByClazz(clazz);
     }
 
-    public List<Student> findAll(){
-        return repository.findAll();
+    public Student getStudentForParent(User user) {
+        return repository.getStudentByIdParent(user.getId())
+                .orElse(new Student(user.getId(), user.getClazz()));
     }
 
-    public Student createStudent(Student student){
+    public void save(Student student) {
         repository.save(student);
-        return student;
     }
 
-    public Student updateStudent(Student student){
-        repository.save(student);
-        return student;
+    public void delete(User user) {
+        var student = repository.getStudentByIdParent(user.getId());
+        student.ifPresent(repository::delete);
     }
-
-
-    public void deleteStudent(Long id){
-        repository.deleteById(id);
-    }
-
-   public Long getStudentById(Long id) throws StudentNotFoundException {
-        Long studentId = repository.findById(id).get().getId();
-        return studentId;
-    }
-
 
 }

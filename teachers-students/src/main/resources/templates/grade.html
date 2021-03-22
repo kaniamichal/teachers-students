@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Oceny</title>
+</head>
+<body>
+<section id="container">
+    <div class="container">
+<h2>Oceń zadania</h2>
+
+<!--Teacher-->
+<div sec:authorize="hasRole('ADMIN')">
+    <!--/*@thymesVar id="studentTask" type="com.example.teachersstudents.model.StudentTask"*/-->
+    <form action="#" th:action="@{/saveGrade}" th:object="${studentTask}" method="post">
+        <table border="1">
+            <tr>
+                <td>Student's Task ID</td>
+                <td><input type="text" th:field="*{id}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Nr zadania</td>
+                <td><input type="text" th:field="*{idTask}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Id studenta</td>
+                <td><input type="text" th:field="*{idStudent}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Opis</td>
+                <td><input type="text" th:field="*{description}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Ocena</td>
+                <td>
+                    <select th:field="*{grade}">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Data zadania</td>
+                <td><input type="text" th:field="*{dueDate}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">
+                        <a th:href="@{'/showStudent/' + *{idStudent}}">Wróć</a>
+                    </button>
+                </td>
+                <td><input type="submit" value="Wyślij"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<aside>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Wyloguj"/>
+</form>
+</aside>
+
+
+</div>
+</section>
+<footer class="footer">
+    <div class="author">
+        &copy; Michał Kania 2021, nr indeksu 72442
+    </div>
+</footer>
+</body>
+</html>

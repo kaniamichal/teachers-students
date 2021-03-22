@@ -1,16 +1,140 @@
-@import url("templates/css/reset.css");
+@import url("reset.css");
 
-body {
-    background-color: red;
-    color: dimgrey;
+html, body {
+    background-color: lightgreen;
+    font-size: 62.5%;
     font-family: 'Arial', 'Tahoma', sans-serif;
     font-weight: normal;
-    font-size: inherit;
     display: grid;
-}
-
-.section1 {
-
+    color: black;
 
 }
 
+
+
+h1 {font-size: 2.5rem; }
+
+h2 { font-size: 2rem; }
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1%;
+}
+
+h1, h2, h3 {
+    color: red;
+    font-weight: bold;
+    margin: 20px;
+    padding: 20px;
+
+}
+
+p {
+    line-height: 2rem;
+    height: auto;
+    margin-left: 20px;
+    font-size: 2rem;
+}
+span{
+    line-height: 2rem;
+    text-decoration: underline;
+    color:red;
+    font-weight: bold;
+}
+
+
+div {
+    float: left;
+    font-family: 'Arial', 'Tahoma', sans-serif;
+    font-size: 2rem;
+    background-color:  inherit;
+    margin: 1.5%;
+    line-height: 2rem;
+    height: auto;
+    clear: both;
+    width: 60%;
+}
+
+
+
+
+#container input[type=text], input[type=password] , select{
+    width: 200px; /* Full width */
+    padding: 5px; /* Some padding */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    margin-left: 40px;
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+#container input[type=submit],button {
+    background-color: green;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 100px;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+#container input[type=submit]:hover {
+    background-color: orangered;
+}
+#container button:hover {
+    background-color: orangered;
+}
+#container div {
+    width: 80%;
+    float: left;
+    object-position: center;
+    margin-left: 20px;
+}
+
+#container p{
+    margin-left: 2%;
+    width: auto;
+}
+
+#container table{
+    border-radius: 5px;
+}
+
+
+#container tr, td {
+    width: 230px;
+}
+
+#container aside {
+    width: auto;
+}
+
+.container {
+    border-radius: 5px;
+    padding: 15px;
+
+}
+/*Footer*/
+footer{
+    width: 98%;
+    background-color: green;
+    margin: 1%;
+    font-family: inherit;
+    font-size: 1rem;
+    position: relative;
+}
+
+
+.footer div{
+    width: 46%;
+    color: white;
+}
+
+.author{
+    text-align: left;
+    float: left;
+}

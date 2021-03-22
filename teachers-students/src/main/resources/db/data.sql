@@ -1,37 +1,58 @@
-DROP TABLE IF EXISTS accounts;
-
-CREATE TABLE accounts (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  login VARCHAR(250) NOT NULL,
-  password VARCHAR(250) NOT NULL,
-  confirm_password VARCHAR (250) NOT NULL,
-  clazz VARCHAR(250) NOT NULL,
-  teacher BIT NOT NULL
-);
-
- insert into accounts(login, password, confirm_password, clazz, teacher) values ('rodzic1@wp.pl', 'test123', 'test123', '1', false);
- insert into accounts(login, password, confirm_password, clazz, teacher) values ('rodzic2@wp.pl', 'wred123', 'wred123', '2', false);
- insert into accounts(login, password, confirm_password, clazz, teacher) values ('naucz1@wp.pl', 'naucz123', 'naucz123', '1', true);
- insert into accounts(login, password, confirm_password, clazz, teacher) values ('naucz2@wp.pl', 'naucz222', 'naucz222', '2', true);
-
-DROP TABLE IF EXISTS students;
-
-CREATE TABLE students(
-    id      INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(250) NOT NULL,
-    last_name VARCHAR(250) NOT NULL,
-   clazz    VARCHAR(250) NOT NULL
-
-);
-
--- -- insert into students(first_name, last_name, clazz) values ('Jan', 'Nowak', '1');
-DROP TABLE IF EXISTS photos;
--- Alter table students add column photos_id int null;
+-- -- DROP TABLE IF EXISTS users;
 --
-CREATE TABLE PHOTOS(
-    id      INT AUTO_INCREMENT PRIMARY KEY,
-    id_student INT,
-    photo VARCHAR
-)
-
--- alter table students add foreign key (photos_id) references PHOTOS (id);
+-- -- CREATE TABLE users
+-- -- (
+-- --     id        INT AUTO_INCREMENT PRIMARY KEY,
+-- --     user_name VARCHAR(250) NOT NULL,
+-- --     password  VARCHAR(250) NOT NULL,
+-- --     clazz     VARCHAR(250) NOT NULL,
+-- --     role      varchar(45)  NOT NULL,
+-- --     enabled   BIT DEFAULT NULL
+-- -- );
+--
+-- insert into users (user_name, password, clazz, role, enabled)
+-- values ('nauczyciel1', '$2a$10$Tr.GLjjbwoEZMo.8VsR7JOkTo7YYjN9ZHXHrRG6bM1rtgMx8XmPtO', '1', 'ROLE_ADMIN', true),
+--        ('rodzic1', '$2a$10$Tr.GLjjbwoEZMo.8VsR7JOkTo7YYjN9ZHXHrRG6bM1rtgMx8XmPtO', '1', 'ROLE_USER', true);
+--
+--
+-- -- DROP TABLE IF EXISTS students;
+-- CREATE TABLE students
+-- (
+--     id         INT AUTO_INCREMENT PRIMARY KEY,
+--     id_parent  INT          NOT NULL,
+--     first_name VARCHAR(250) NOT NULL,
+--     last_name  VARCHAR(250) NOT NULL,
+--     clazz      VARCHAR(250) NOT NULL
+-- );
+--
+-- insert into students (id_parent, first_name, last_name, clazz)
+-- values (2, 'Anna', 'Nowak1', '1');
+--
+-- -- DROP TABLE IF EXISTS files;
+-- CREATE TABLE files
+-- (
+--     id        INT AUTO_INCREMENT PRIMARY KEY,
+--     id_parent INT          NOT NULL,
+--     file_name VARCHAR(250) NOT NULL,
+--     img       BLOB
+-- );
+--
+-- -- DROP TABLE IF EXISTS tasks;
+-- CREATE TABLE tasks
+-- (
+--     id          INT AUTO_INCREMENT PRIMARY KEY,
+--     id_teacher  INT          NOT NULL,
+--     description VARCHAR(250) NOT NULL,
+--     due_date    DATE
+-- );
+--
+-- -- DROP TABLE IF EXISTS student_tasks;
+-- CREATE TABLE student_tasks
+-- (
+--     id          INT AUTO_INCREMENT PRIMARY KEY,
+--     id_task     INT          NOT NULL,
+--     id_student  INT          NOT NULL,
+--     description VARCHAR(250) NOT NULL,
+--     grade       VARCHAR(10) NULL,
+--     due_date    DATE
+-- );

@@ -1,24 +1,184 @@
 <!DOCTYPE html>
-<html lang="pl" >
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" th:href="@{/templates/css/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Strona główna</title>
 </head>
 <body>
-<div align="center">
-    Witaj na mojej stornie :)
+<section id="container">
+    <div class="container">
 
-    <a href="/login"> a to co będzie? </a>
-</div>
-<div>
-        <div align="center">
-            <button><a href="/register"> Register</a></button>
-            <button><a href="/login"> Login</a></button>
+        <!--Teacher-->
+        <div sec:authorize="hasRole('ADMIN')">
+            <h2>Zalogowałeś się jako nauczyciel</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id studenta</th>
+                    <th>Id rodzica</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Klasa</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.idParent}"></td>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.clazz}"></td>
+                    <td>
+                        <button type="submit">
+                            <a th:href="@{'/showStudent/' + ${student.id}}">Pokaż zadania</a>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <h2>Zadania</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Id zadania</th>
+                        <th>Id nauczyciela</th>
+                        <th>Opis</th>
+                        <th>Termin</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="task : ${tasks}">
+                        <td th:text="${task.id}"></td>
+                        <td th:text="${task.idTeacher}"></td>
+                        <td th:text="${task.description}"></td>
+                        <td type="date" th:text="${task.dueDate}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <form action="#" th:action="@{/createTask}" th:object="${task}" method="post">
+                    <table border="1">
+                        <tr>
+                            <td>Opis</td>
+                            <td>Termin</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" th:field="*{description}"/></td>
+                            <td><input type="date" th:field="*{dueDate}"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit">Dodaj</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
         </div>
 
-</div>
+        <!--Parent-->
+        <div sec:authorize="hasRole('USER')">
+            <h1>Zalogowałeś się jako rodzic</h1>
+            <form action="#" th:action="@{/saveStudent}" th:object="${student}" method="post">
+                <h2>Dodaj ucznia lub edytuj dane wypełniając poniższe pola</h2>
+                <table>
+                    <tr>
+                        <td><p>Id</p></td>
+                        <td><input type="text" th:field="*{id}" readonly="readonly"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Id rodzica</p></td>
+                        <td><input type="text" th:field="*{idParent}" readonly="readonly"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Imię ucznia</p></td>
+                        <td><input type="text" th:field="*{firstName}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Nazwisko ucznia</p></td>
+                        <td><input type="text" th:field="*{lastName}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p>Klasa</p></td>
+                        <td><input type="text" th:field="*{clazz}" readonly="readonly"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">Zapisz</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+<br/><br/>
 
+            <form action="#" th:action="@{/deleteStudent}" th:object="${student}" method="post">
+                <table>
+                    <tr>
+                        <td>Usuń ucznia</td>
+                        <td> <button type="submit">Usuń</button></td>
+                    </tr>
+
+                </table>
+            </form>
+
+            <!--    File upload-->
+
+<!--            <div>-->
+<!--                <h2>Dodaj zdjęcie</h2>-->
+<!--                <p th:text="${message}" th:if="${message ne null}"></p>-->
+<!--                <form action="#" th:action="@{/uploadFile}" enctype="multipart/form-data" method="post">-->
+<!--                    <div>-->
+<!--                        <input type="file" name="file">-->
+<!--                    </div>-->
+<!--                    <button type="submit">Dodaj</button>-->
+<!--                </form>-->
+<!--            </div>-->
+
+            <!--    <div>-->
+            <!--        <img th:src="@{image}" th:if="${image ne null}"/>-->
+            <!--    </div>-->
+
+            <div>
+                <h2>Oceny</h2>
+                <table>
+                    <thead>
+                    <tr>
+        <!--                <th>Student's Task ID</th>-->
+                        <th>Id zadania</th>
+                        <th>Id studenta</th>
+                        <th>Opis</th>
+                        <th>Ocena</th>
+                        <th>Termin</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="task : ${studentTasks}">
+        <!--                <td th:text="${task.id}"></td>-->
+                        <td th:text="${task.idTask}"></td>
+                        <td th:text="${task.idStudent}"></td>
+                        <td th:text="${task.description}"></td>
+                        <td th:text="${task.grade}"></td>
+                        <td type="date" th:text="${task.dueDate}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <aside>
+                <br>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Wyloguj"/>
+                </form>
+        </aside>
+    </div>
+</section>
 </body>
 </html>

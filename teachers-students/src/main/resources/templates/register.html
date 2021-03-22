@@ -4,44 +4,54 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Registration</title>
 </head>
 <body>
-<h1>Register</h1>
+<p>
+<h1>Załóż konto, by móc korzystać z funkcjonalności portalu</h1>
+</p>
+<section id="container">
+    <div class="container">
 
-<table border="1">
-    <form action="#" th:action="@{/createAccount}" th:object="${account}" method="post">
-        <tr>
-            <td><p>login</p></td>
-            <td><input type="text" th:field="*{login}"/></td>
-        </tr>
-        <tr>
-            <td><p>password</p></td>
-            <td><input type="text" th:field="*{password}"/></td>
-        </tr>
-        <tr>
-            <td><p>clazz</p></td>
-            <td><input type="text" th:field="*{clazz}"/></td>
-        </tr>
-        <tr>
-            <td><p>teacher</p></td>
-            <td>
-                <select th:field="*{teacher}">
-                    <option value="True">Yes</option>
-                    <option value="False">No</option>
-                </select>
-            </td>
-        </tr>
+        <form action="#" th:action="@{/createAccount}" th:object="${user}" method="post">
+            <table>
+                <tr>
+                    <td><p>Nazwa użytkownika</p></td>
+                    <td><input type="text" th:field="*{userName}"/></td>
+                </tr>
+                <tr>
+                    <td><p>Hasło</p></td>
+                    <td><input type="password" th:field="*{password}"/></td>
+                </tr>
+                <tr>
+                    <td><p>Klasa</p></td>
+                    <td><input type="text" th:field="*{clazz}"/></td>
+                </tr>
+                <tr>
+                    <td><p>Wybierz rolę</p></td>
+                    <td>
+                        <select th:field="*{role}">
+                            <option value="ROLE_ADMIN">Nauczyciel</option>
+                            <option value="ROLE_USER">Rodzic</option>
+                        </select>
+                        <br/><br/><br/><br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Załóż konto"/></td>
+                    <td><button th:href="@{/index}">Anuluj</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</section>
 
-        <tr>
-            <td><input type="submit" value="Submit"/></td>
-            <td><a th:href="@{/index}"/>Cancel</td>
-        </tr>
-    </form>
-</table>
-
-
+<footer class="footer">
+    <div class="author">
+        &copy; Michał Kania 2021, nr indeksu 72442
+    </div>
+</footer>
 </body>
 </html>
-

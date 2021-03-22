@@ -16,5 +16,14 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="teachers-students/Hibernate" uuid="2324d736-c360-4ea0-8418-95f780b0809a">
+      <database-info product="H2" version="1.4.200 (2019-10-14)" jdbc-version="4.1" driver-name="H2 JDBC Driver" driver-version="1.4.200 (2019-10-14)" dbms="H2" exact-version="1.4.200" exact-driver-version="1.4">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>sa</user-name>
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

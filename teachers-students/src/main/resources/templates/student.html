@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="src/main/resources/templates/css/style.css" th:href="@{/css/style.css}">
+    <title>Home</title>
+</head>
+<body>
+<section id="container">
+    <div class="container">
+        <h2>Zadania studentów</h2>
+
+        <!--Teacher-->
+        <div sec:authorize="hasRole('ADMIN')">
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Student's Task ID</th>
+                    <th>Id zadania</th>
+                    <th>Id studenta</th>
+                    <th>Opis</th>
+                    <th>Ocena</th>
+                    <th>Data</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="task : ${studentTasks}">
+                    <td th:text="${task.id}"></td>
+                    <td th:text="${task.idTask}"></td>
+                    <td th:text="${task.idStudent}"></td>
+                    <td th:text="${task.description}"></td>
+                    <td th:text="${task.grade}"></td>
+                    <td type="date" th:text="${task.dueDate}"></td>
+                    <td>
+                        <button type="submit">
+                            <a th:href="@{'/editGrade/' + ${task.id}}">Edytuj</a>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+            <form th:action="@{/index}" method="post">
+                <input type="submit" value="Wróć"/>
+            </form>
+        <aside>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Wyloguj"/>
+            </form>
+        </aside>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="author">
+        &copy; Michał Kania 2021, nr indeksu 72442
+    </div>
+</footer>
+</body>
+</html>

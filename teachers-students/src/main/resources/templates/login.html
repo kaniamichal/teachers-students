@@ -4,25 +4,48 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Login</title>
 </head>
 <body>
-<table>
-    <form action="#" th:action="@{/userLogin}" th:object="${accountDTO}" method="get">
-        <tr>
-            <td><p>Login</p></td>
-            <td><input type="text" th:field="*{login}"/></td>
-        </tr>
-        <tr>
-            <td><p>Password</p></td>
-            <td><input type="text" th:field="*{password}"/></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Login"/></td>
-            <td><a th:href="@{/index}">Cancel</a></td>
-        </tr>
-    </form>
-</table>
+<h2>By móc korzystać z portalu musisz się zalogować</h2>
+<section id="container">
+    <div class="container">
+            <form th:action="@{/login}" method="post">
+                <table>
+                    <tr>
+                        <td><label for="username"><p>Nazwa użytkownika</p></label></td>
+                        <td><input type="text"id="username" name="username" autofocus="autofocus" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password"><p>Hasło</p></label></td>
+                        <td><input type="password" id="password" name="password" /> <p></p></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Zaloguj się" /></td>
+                    </tr>
+                </table>
+            </form>
+
+        <br/><br/><br/><br/>
+        <table>
+            <form th:action="@{/register}" method="post">
+                <tr>
+                    <td><p>Nie masz konta?</p></td>
+                <td><input type="submit" value="Załóż konto" /></td>
+                </tr>
+            </form>
+        </table>
+    </div>
+
+</section>
+
+<footer class="footer">
+    <div class="author">
+        &copy; Michał Kania 2021, nr indeksu 72442
+    </div>
+</footer>
 </body>
 </html>

@@ -8,5 +8,14 @@
       <jdbc-url>jdbc:h2:file:$PROJECT_DIR$/teachers-students/src/main/resources/db/demoDB</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="teachers-students/Hibernate" uuid="2324d736-c360-4ea0-8418-95f780b0809a">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate</remarks>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:file:$PROJECT_DIR$/teachers-students/src/main/resources/db/demoDB;INIT=runscript from '$PROJECT_DIR$/teachers-students/src/main/resources/db/data.sql'</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
